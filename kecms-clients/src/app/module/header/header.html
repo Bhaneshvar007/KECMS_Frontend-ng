@@ -1,0 +1,111 @@
+<nav class="navbar navbar-expand-lg uti-navbar px-3">
+
+  <!-- Logo -->
+  <a class="navbar-brand" routerLink="/">
+    <img src="\assets\images\logo2.png" height="35" />
+  </a>
+
+ 
+  <button class="navbar-toggler" type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navBar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navBar">
+
+ 
+    <ul class="navbar-nav me-auto">
+
+   
+      <ng-container *ngFor="let m of menus">
+        <li class="nav-item"
+            *ngIf="!uploadIds.includes(m.id) && !reportIds.includes(m.id)">
+          <a class="nav-link text-white"
+             [routerLink]="m.route">
+            {{ m.title }}
+          </a>
+        </li>
+      </ng-container>
+
+      <!-- Upload Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white"
+           role="button"
+           data-bs-toggle="dropdown">
+          Upload
+        </a>
+
+        <ul class="dropdown-menu">
+          <li *ngFor="let m of menus">
+            <a *ngIf="uploadIds.includes(m.id)"
+               class="dropdown-item"
+               [routerLink]="m.route">
+              {{ m.title }}
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Reports Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white"
+           role="button"
+           data-bs-toggle="dropdown">
+          Reports
+        </a>
+
+        <ul class="dropdown-menu">
+          <li *ngFor="let m of menus">
+            <a *ngIf="reportIds.includes(m.id)"
+               class="dropdown-item"
+               [routerLink]="m.route">
+              {{ m.title }}
+            </a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+
+    <!-- RIGHT USER -->
+    <div class="dropdown logout">
+
+  <a class="d-flex align-items-center text-white dropdown-toggle"
+     role="button"
+     data-bs-toggle="dropdown">
+    {{ userName }}
+  </a>
+
+  <ul class="dropdown-menu dropdown-menu-end shadow">
+
+    <li>
+      <a class="dropdown-item d-flex align-items-center"
+         routerLink="/logout">
+
+        <img src="\assets\images\logout.png"
+             height="18"
+             class="me-2">
+
+        Logout
+      </a>
+    </li>
+
+    <li>
+      <a class="dropdown-item d-flex align-items-center"
+         routerLink="/settings">
+
+        <img src="\assets\images\Settings.png"
+             height="18"
+             class="me-2">
+
+        Settings
+      </a>
+    </li>
+
+  </ul>
+</div>
+
+
+  </div>
+</nav>

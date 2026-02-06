@@ -1,0 +1,12 @@
+.table-responsive {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.table a {
+  text-decoration: none;
+}
+
+.page-link {
+  cursor: pointer;
+}

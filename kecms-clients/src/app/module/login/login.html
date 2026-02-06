@@ -1,0 +1,51 @@
+<div class="login-wrapper">
+
+  <div class="login-card">
+    <!-- Logo -->
+    <div class="mb-3">
+      <img src="assets/images/logo.png" alt="Logo" height="60">
+    </div>
+
+    <h5 class="text-primary mb-4">
+      <strong>Key Compensation Management System</strong>
+    </h5>
+
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+
+      <!-- Email -->
+      <div class="mb-3">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email Or UserId"
+          name="email"
+          [(ngModel)]="email"
+          required>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          name="password"
+          [(ngModel)]="password"
+          required>
+      </div>
+
+      <!-- Button -->
+      <div class="d-grid">
+        <button
+          type="submit"
+          class="btn btn-dark"
+          >
+          Log in
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

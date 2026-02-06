@@ -1,0 +1,31 @@
+input.form-control {
+  height: 42px;
+}
+
+input{
+    font-size: 15px;
+}
+
+button.btn {
+  height: 45px;
+  font-weight: 600;
+  background-color: #383095;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  background: #d6d6d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 420px;
+  min-height: 400px;   
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 30px;
+  text-align: center;
+}
