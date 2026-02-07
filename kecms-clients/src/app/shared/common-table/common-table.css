@@ -1,0 +1,15 @@
+.table-scroll {
+  height: 350px;    
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+ 
+.mat-header-row {
+  background: white;
+  background-color: #2180df;  
+  z-index: 11;
+}

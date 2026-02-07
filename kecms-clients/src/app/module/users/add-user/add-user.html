@@ -1,0 +1,115 @@
+<div class="mx-2 mt-3">
+
+  <!-- Breadcrumb -->
+  <ul class="nav mb-2">
+    <li class="nav-item">
+      <span class="nav-link text-dark fw-bold">Statistics</span>
+    </li>
+    <li class="nav-item" routerLink="/User">
+      <span class="nav-link active">User Master</span>
+    </li>
+  </ul>
+  <hr>
+
+  <!-- Card -->
+  <div class="card shadow-sm">
+    <!-- <div class="card-header bg-secondary text-white">
+      <h5 class="mb-0">Add / Update User</h5>
+    </div> -->
+
+    <div class="card-body">
+      <form [formGroup]="userForm" (ngSubmit)="submit()">
+
+        <!-- User Code -->
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">User Code</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control"
+                   formControlName="code">
+            <small class="text-danger"
+              *ngIf="userForm.get('code')?.touched && userForm.get('code')?.invalid">
+              User Code is required
+            </small>
+          </div>
+        </div>
+
+        <!-- User Name -->
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">User Name</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control"
+                   formControlName="name">
+            <small class="text-danger"
+              *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
+              User Name is required
+            </small>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Email Address</label>
+          <div class="col-sm-5">
+            <input type="email" class="form-control"
+                   formControlName="email">
+            <small class="text-danger"
+              *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+              Valid Email is required
+            </small>
+          </div>
+        </div>
+
+        <!-- Role -->
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Role</label>
+          <div class="col-sm-5">
+            <select class="form-select" formControlName="roleId">
+              <option value="">-- Select Role --</option>
+              <option *ngFor="let r of roles" [value]="r.id">
+                {{ r.name }}
+              </option>
+            </select>
+            <small class="text-danger"
+              *ngIf="userForm.get('roleId')?.touched && userForm.get('roleId')?.invalid">
+              Role is required
+            </small>
+          </div>
+        </div>
+
+        <!-- Is Active -->
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Is Active</label>
+          <div class="col-sm-5">
+            <div class="form-check">
+              <input class="form-check-input"
+                     type="checkbox"
+                     formControlName="isActive">
+              <label class="form-check-label">Active</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="row">
+          <div class="col-sm-8 ">
+            <button type="submit" class="btn btn-primary me-2"
+              *ngIf="userForm.value.id === 0">
+              Submit
+            </button>
+
+            <button type="submit" class="btn btn-warning"
+              *ngIf="userForm.value.id > 0">
+              Update
+            </button>
+
+             <button routerLink="/User" class="btn btn-danger me-2"
+              *ngIf="userForm.value.id === 0">
+              Back
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -11,8 +11,15 @@
     <div class="mt-3 d-flex justify-content-end">
 
         <div>
-            <a routerLink="/User/Item/0" class="btn btn-secondary me-2">+</a>
-            <button class="btn btn-primary" >Download Excel</button>
+            <a routerLink="/User/add-user" class="btn btn-secondary me-2">+</a>
+            <button class="btn btn-primary">Download Excel</button>
         </div>
     </div>
+
+
+    <div class="UserListTable">
+        <app-common-table [columns]="columns" [data]="userList">
+        </app-common-table>
+    </div>
+
 </div>
