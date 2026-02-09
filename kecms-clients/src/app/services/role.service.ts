@@ -15,8 +15,8 @@ export class RoleService {
         return this.http.get(API.ROLE.GET_ALL);
     }
 
-    getRoleById(id: number): Observable<any> {
-        return this.http.get(API.ROLE.GET_BY_ID(id));
+    getRoleById(code: string): Observable<any> {
+        return this.http.get(API.ROLE.GET_BY_ID(code));
     }
 
     createRole(data: any): Observable<any> {

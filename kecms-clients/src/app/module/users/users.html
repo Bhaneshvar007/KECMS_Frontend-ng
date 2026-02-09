@@ -16,9 +16,9 @@
         </div>
     </div>
 
-
+    <!-- Binding with the table -->
     <div class="UserListTable">
-        <app-common-table [columns]="columns" [data]="userList">
+        <app-common-table [columns]="columns" [data]="userList"  (rowClick)="onUserClick($event)">
         </app-common-table>
     </div>
 

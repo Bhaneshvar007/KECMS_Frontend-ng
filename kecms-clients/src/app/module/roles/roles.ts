@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonTable } from '../../shared/common-table/common-table';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-roles',
@@ -9,6 +9,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './roles.css',
 })
 export class Roles {
+  constructor(private router: Router) { }
+
+  onRoleClick(role: any) {
+    this.router.navigate(['/Role/update', role.code]);
+  }
   columns = [
     { key: 'srno', label: 'SrNo' },
     { key: 'code', label: 'Code' },

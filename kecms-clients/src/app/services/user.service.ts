@@ -15,8 +15,8 @@ export class UserService {
         return this.http.get(API.USER.GET_ALL);
     }
 
-    getUserById(id: number): Observable<any> {
-        return this.http.get(API.USER.GET_BY_ID(id));
+    getUserById(code: string): Observable<any> {
+        return this.http.get(API.USER.GET_BY_ID(code));
     }
 
     createUser(data: any): Observable<any> {

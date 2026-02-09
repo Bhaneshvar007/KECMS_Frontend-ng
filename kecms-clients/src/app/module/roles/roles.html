@@ -18,7 +18,7 @@
 
 
     <div class="RoleListTable">
-        <app-common-table [columns]="columns" [data]="RoleList">
+        <app-common-table [columns]="columns" [data]="RoleList"(rowClick)="onRoleClick($event)">
         </app-common-table>
     </div>
 

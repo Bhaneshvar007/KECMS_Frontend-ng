@@ -1,12 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
-interface Menu {
-  id: number;
-  title: string;
-  route: string;
-}
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,34 +9,75 @@ interface Menu {
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-export class Header {
+export class Header implements OnInit {
+constructor(private router: Router) {}
 
-  userName = 'Smita Joshi';
+  userName = '';
 
-  menus: Menu[] = [
-    { id: 1, title: 'Scheme Master', route: '/scheme-master' },
-    { id: 2, title: 'Employee Master', route: '/employee-master' },
-    { id: 3, title: 'Emp Schm Mapping', route: '/emp-schm-mapping' },
+  uploadMenuIds = [4, 7, 9, 25, 26, 27];
+  reportMenuIds = [5, 8, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 23];
 
-    // Upload
-    { id: 101, title: 'Retention Upload', route: '/upload/retention' },
-    { id: 102, title: 'SetOff Upload', route: '/upload/setoff' },
-    { id: 103, title: 'AUM Upload', route: '/upload/aum' },
-    { id: 104, title: 'Upload Scheme', route: '/upload/scheme' },
-    { id: 105, title: 'Upload Employee', route: '/upload/employee' },
-    { id: 106, title: 'Upload Empsch Mapping', route: '/upload/empsch' },
+  processedMenus: any[] = [];
 
-    // Reports
-    { id: 201, title: 'Apportionment Report', route: '/reports/apportionment' },
-    { id: 202, title: 'Retention Calculate Amount Report', route: '/reports/retention' },
-    { id: 203, title: 'SetOff Calculate Amount Report', route: '/reports/setoff' },
-    { id: 204, title: 'Karvy Report Without SetOff', route: '/reports/karvy-no-setoff' },
-    { id: 205, title: 'Karvy Report With SetOff', route: '/reports/karvy-setoff' },
-    { id: 206, title: 'Sent to Website Report', route: '/reports/website' },
-    { id: 207, title: 'Sent to Payroll Report', route: '/reports/payroll' },
-    { id: 208, title: 'Sent To Account Report', route: '/reports/account' }
-  ]; 
+  ngOnInit(): void {
 
-  uploadIds = [101, 102, 103, 104, 105, 106];
-  reportIds = [201, 202, 203, 204, 205, 206, 207, 208];
+    // username
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.userName = JSON.parse(user).Name;
+    }
+
+    // menus
+    const menuData = localStorage.getItem('menus');
+    if (!menuData) return;
+
+    const menus = JSON.parse(menuData);
+
+    const uploadItems = menus.filter((m: any) =>
+      this.uploadMenuIds.includes(m.id)
+    );
+
+    const reportItems = menus.filter((m: any) =>
+      this.reportMenuIds.includes(m.id)
+    );
+
+    let uploadAdded = false;
+    let reportAdded = false;
+
+    menus.forEach((m: any) => {
+
+      if (this.uploadMenuIds.includes(m.id)) {
+        if (!uploadAdded) {
+          this.processedMenus.push({
+            type: 'upload',
+            items: uploadItems
+          });
+          uploadAdded = true;
+        }
+        return;
+      }
+
+      if (this.reportMenuIds.includes(m.id)) {
+        if (!reportAdded) {
+          this.processedMenus.push({
+            type: 'report',
+            items: reportItems
+          });
+          reportAdded = true;
+        }
+        return;
+      }
+
+      // normal menu
+      this.processedMenus.push({
+        type: 'normal',
+        item: m
+      });
+    });
+  }
+
+  logout() {
+  localStorage.clear();
+  this.router.navigate(['/login']);
+}
 }

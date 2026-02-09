@@ -5,6 +5,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-common-table',
@@ -12,12 +13,13 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     MatTableModule,
-    MatPaginatorModule,   
+    MatPaginatorModule,
     MatSortModule,
     MatInputModule
   ],
   templateUrl: './common-table.html'
 })
+
 export class CommonTable implements OnInit, AfterViewInit {
 
   @Input() columns: any[] = [];
@@ -30,6 +32,7 @@ export class CommonTable implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @Output() rowClick = new EventEmitter<any>();
 
   ngOnInit() {
     this.displayedColumns = this.columns.map(c => c.key);

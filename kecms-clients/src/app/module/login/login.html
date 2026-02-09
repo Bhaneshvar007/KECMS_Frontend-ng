@@ -10,41 +10,39 @@
       <strong>Key Compensation Management System</strong>
     </h5>
 
-    <form (ngSubmit)="login()" #loginForm="ngForm">
+    <form #loginForm="ngForm"  novalidate>
 
-      <!-- Email -->
+      <!-- EMAIL -->
       <div class="mb-3">
-        <input
-          type="email"
-          class="form-control"
-          placeholder="Email Or UserId"
-          name="email"
-          [(ngModel)]="email"
-          required>
+        <input type="text" class="form-control" placeholder="Email Or UserId" name="email" [(ngModel)]="email"
+          #emailCtrl="ngModel" required>
       </div>
 
-      <!-- Password -->
+      <!-- PASSWORD -->
       <div class="mb-3">
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Password"
-          name="password"
-          [(ngModel)]="password"
-          required>
+        <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password"
+          #passwordCtrl="ngModel">
+
+
       </div>
 
-      <!-- Button -->
+
+
+      <!-- BUTTON -->
       <div class="d-grid">
-        <button
-          type="submit"
-          class="btn btn-dark"
-          >
+        <button (click)="login(loginForm)" class="btn btn-dark">
           Log in
         </button>
       </div>
 
+
+      <div *ngIf="loginError" class="text-danger text-center mb-2">
+        {{ loginError }}
+      </div>
+
+
     </form>
+
 
   </div>
 

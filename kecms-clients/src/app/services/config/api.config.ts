@@ -9,7 +9,7 @@ export const API = {
 
   USER: {
     GET_ALL: `${BASE_URL}/user`,
-    GET_BY_ID: (id: number) => `${BASE_URL}/user/${id}`,
+    GET_BY_ID: (code: string) => `${BASE_URL}/user/update/${code}`,
     CREATE: `${BASE_URL}/user`,
     UPDATE: `${BASE_URL}/user`,
     DELETE: (id: number) => `${BASE_URL}/user/${id}`
@@ -18,7 +18,7 @@ export const API = {
 
   ROLE: {
     GET_ALL: `${BASE_URL}/Roles`,
-    GET_BY_ID: (id: number) => `${BASE_URL}/Roles/${id}`,
+    GET_BY_ID: (code: string) => `${BASE_URL}/Roles/update/${code}`,
     CREATE: `${BASE_URL}/Roles`,
     UPDATE: `${BASE_URL}/Roles`,
     DELETE: (id: number) => `${BASE_URL}/Roles/${id}`

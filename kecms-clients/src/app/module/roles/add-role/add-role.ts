@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RoleService } from '../../../services/role.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class AddRole {
 
   constructor(
     private fb: FormBuilder,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private route: ActivatedRoute
   ) { }
 
 
@@ -27,7 +28,33 @@ export class AddRole {
       name: ['', Validators.required],
       isActive: [true]
     });
+
+    const code = this.route.snapshot.paramMap.get('code');
+
+    if (code) {
+      this.loadRoleByCode(code); 
+      console.log(code) 
+    }
   }
+
+
+
+
+  loadRoleByCode(code: string) {
+    this.roleService.getRoleById(code).subscribe({
+      next: (role) => {
+        this.roleForm.patchValue({
+          id: role.id,
+          code: role.code,
+          name: role.name,
+          isActive: role.isActive
+        });
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+
 
   submit() {
     if (this.roleForm.invalid) {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonTable } from '../../shared/common-table/common-table';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -11,6 +12,12 @@ import { RouterModule } from '@angular/router';
 
 
 export class Users {
+  constructor(private router: Router) { }
+
+  onUserClick(user: any) {
+    this.router.navigate(['/User/update', user.code]);
+  }
+
   columns = [
     { key: 'srno', label: 'SrNo' },
     { key: 'code', label: 'Code' },
